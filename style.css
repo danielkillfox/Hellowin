@@ -1,0 +1,126 @@
+body {
+    background-color: #ffffff;
+    color: darkred;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.Header_roulette {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.roulette_window {
+    position: relative;
+    width: 600px;
+    max-width: 100%;
+    height: 150px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border: 3px solid darkred;
+    background: #fff;
+}
+
+.roulette_bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    will-change: transform;
+}
+
+.roulette_item {
+    flex: 0 0 120px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid #ddd;
+}
+
+.roulette_item img {
+    max-width: 90px;
+    max-height: 90px;
+}
+
+.roulette_point {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    transform: translateX(-50%);
+    background: gold;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.Header_roulette button {
+    margin: 10px 6px 0;
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: darkred;
+    border: 2px solid gold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.Header_roulette button:hover:not(:disabled) {
+    background: #a30000;
+}
+
+.Header_roulette button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.Drop {
+    padding: 20px;
+    border: 3px solid darkred;
+    border-radius: 10px;
+    background: #fff;
+    text-align: center;
+}
+
+.Drop::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.Drop img {
+    width: 150px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.Drop_Item p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.Drop_Actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.Drop_Actions button {
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background: darkred;
+    border: 2px solid gold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.Drop_Actions button:hover {
+    background: #a30000;
+}

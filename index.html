@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Рулетка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="Header_roulette" id="rouletteSection">
+        <div class="roulette_window" id="Peso">
+            <div id="roulette_bar" class="roulette_bar"></div>
+            <div class="roulette_point"></div>
+        </div>
+
+        <button id="Spin_Button" type="button">Make a Wish</button>
+        <button id="Cancel_Button" type="button">Cancel</button>
+
+        <dialog id="drop_dialog" class="Drop">
+            <div class="Drop_Item" id="result"></div>
+            <div class="Drop_Actions">
+                <button id="Close_Result" type="button">Закрыть</button>
+                <button id="Spin_Again" type="button">Крутить снова</button>
+            </div>
+        </dialog>
+    </main>
+
+    <script src="scrypt.js" defer></script>
+</body>
+</html>
