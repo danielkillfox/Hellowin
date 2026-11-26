@@ -37,6 +37,13 @@ ITEMS.forEach((item) => {
 
 // ===== ПАДЕНИЕ ТЫКВЫ ПРИ ЗАГРУЗКЕ =====
 function startPumpkinDrop() {
+    // Если анимации отключены системой, событие animationend не наступит
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        caseImg.classList.add("shake");
+        giftFell = true;
+        return;
+    }
+
     caseImg.classList.add("drop-in");
     caseImg.addEventListener("animationend", () => {
         caseImg.classList.remove("drop-in");
