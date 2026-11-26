@@ -1,26 +1,205 @@
-body {
-    background-color: #ffffff;
-    color: darkred;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+/* ===== ХЭЛЛОУИНСКАЯ ПАЛИТРА ===== */
+:root {
+    --night: #0b0510;
+    --night-2: #1b0a29;
+    --purple: #3b1452;
+    --orange: #ff8a1f;
+    --orange-light: #ffbb63;
+    --orange-dark: #b8430a;
+    --blood: #8d1226;
+    --cream: #f7e7c8;
+    --cream-dark: #e6c99a;
+    --ghost: #e9f1ff;
+    --green: #8fc64a;
 }
 
-.Header_roulette {
-    text-align: center;
-    margin-bottom: 10px;
+* {
+    box-sizing: border-box;
 }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: var(--cream);
+    background:
+        radial-gradient(ellipse at 50% 12%, rgba(90, 35, 120, 0.65) 0%, rgba(27, 10, 41, 0.9) 45%, var(--night) 100%),
+        var(--night);
+}
+
+/* ===== CSS-ДЕКОРАЦИЯ (без векторной графики) ===== */
+.night {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.moon {
+    position: absolute;
+    top: 7%;
+    right: 9%;
+    width: clamp(90px, 13vw, 150px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 28% 28%, rgba(150, 110, 70, 0.22) 0 9%, transparent 10%),
+        radial-gradient(circle at 66% 38%, rgba(150, 110, 70, 0.18) 0 13%, transparent 14%),
+        radial-gradient(circle at 45% 70%, rgba(150, 110, 70, 0.16) 0 11%, transparent 12%),
+        radial-gradient(circle at 35% 30%, #fff8dc 0%, #f4dda4 58%, #c99a56 100%);
+    box-shadow: 0 0 70px rgba(255, 200, 120, 0.35);
+    opacity: 0.9;
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+    opacity: 0.75;
+    background-image:
+        radial-gradient(2px 2px at 8% 12%, #fff 50%, transparent 51%),
+        radial-gradient(2px 2px at 18% 30%, #ffe4a8 50%, transparent 51%),
+        radial-gradient(1px 1px at 29% 9%, #fff 50%, transparent 51%),
+        radial-gradient(2px 2px at 38% 22%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 47% 8%, #ffd27a 50%, transparent 51%),
+        radial-gradient(2px 2px at 57% 18%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 68% 7%, #fff 50%, transparent 51%),
+        radial-gradient(2px 2px at 78% 26%, #ffe4a8 50%, transparent 51%),
+        radial-gradient(1px 1px at 88% 12%, #fff 50%, transparent 51%),
+        radial-gradient(2px 2px at 94% 34%, #fff 50%, transparent 51%),
+        radial-gradient(1px 1px at 12% 48%, #fff 50%, transparent 51%),
+        radial-gradient(2px 2px at 84% 52%, #ffd27a 50%, transparent 51%);
+}
+
+.bat {
+    position: absolute;
+    width: 46px;
+    height: 20px;
+    background: #07030b;
+    clip-path: polygon(0 48%, 19% 4%, 38% 36%, 50% 18%, 62% 36%, 81% 4%, 100% 48%, 82% 40%, 63% 72%, 50% 52%, 37% 72%, 18% 40%);
+    animation: batFly 9s ease-in-out infinite alternate;
+}
+
+.bat-one {
+    top: 18%;
+    left: 12%;
+    transform: scale(1.1);
+}
+
+.bat-two {
+    top: 27%;
+    right: 16%;
+    transform: scale(0.7);
+    animation-delay: -4s;
+    animation-duration: 11s;
+}
+
+.fog {
+    position: absolute;
+    bottom: -30px;
+    left: -10%;
+    width: 120%;
+    height: 220px;
+    background:
+        radial-gradient(ellipse at 20% 100%, rgba(130, 90, 160, 0.22) 0%, transparent 65%),
+        radial-gradient(ellipse at 55% 100%, rgba(255, 138, 31, 0.10) 0%, transparent 60%),
+        radial-gradient(ellipse at 85% 100%, rgba(120, 180, 90, 0.12) 0%, transparent 62%);
+    filter: blur(10px);
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: linear-gradient(180deg, #1a0d22 0%, #07030b 100%);
+    border-top: 2px solid rgba(255, 138, 31, 0.16);
+}
+
+/* ===== СЦЕНА ===== */
+.stage {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px 96px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title {
+    margin: 0 0 8px;
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: clamp(2rem, 6vw, 3.8rem);
+    line-height: 1.05;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--orange);
+    text-shadow: 0 3px 0 #5c1c06, 0 0 22px rgba(255, 138, 31, 0.55);
+}
+
+.subtitle {
+    margin: 0 0 18px;
+    color: #d5c2e8;
+    font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+}
+
+/* ===== РУЛЕТКА ===== */
+.Header_roulette {
+    visibility: hidden;
+    width: 100%;
+    margin: 0 auto 22px;
+}
+
+.Header_roulette.show {
+    visibility: visible;
+    animation: rouletteAppear 0.55s ease-out both;
+}
+
+.roulette_frame {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 12px;
+    border: 2px solid var(--orange-dark);
+    border-radius: 18px;
+    background: linear-gradient(145deg, #4a1d5f, #1d0b2c);
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.55), inset 0 0 24px rgba(255, 138, 31, 0.16);
+}
+
+.roulette_frame::before,
+.roulette_frame::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 14px rgba(255, 138, 31, 0.8);
+}
+
+.roulette_frame::before { left: 18px; }
+.roulette_frame::after { right: 18px; }
 
 .roulette_window {
     position: relative;
     width: 600px;
     max-width: 100%;
-    height: 150px;
-    margin: 0 auto 20px;
+    height: 140px;
+    margin: 0 auto;
     overflow: hidden;
-    border: 3px solid darkred;
-    background: #fff;
+    border: 2px solid #7a3a12;
+    border-radius: 12px;
+    background: #160a20;
+    box-shadow: inset 0 0 32px rgba(0, 0, 0, 0.65);
 }
 
 .roulette_bar {
@@ -33,18 +212,25 @@ body {
 }
 
 .roulette_item {
-    flex: 0 0 120px;
+    flex: 0 0 120px; /* совпадает с ITEM_WIDTH в scrypt.js */
     height: 100%;
-    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-right: 2px solid #ddd;
+    border-right: 2px dashed rgba(120, 65, 25, 0.45);
+    background: linear-gradient(180deg, #f9edcf 0%, #ecd0a1 100%);
+}
+
+.roulette_item:nth-child(even) {
+    background: linear-gradient(180deg, #f3dfb8 0%, #dfbe88 100%);
 }
 
 .roulette_item img {
-    max-width: 90px;
-    max-height: 90px;
+    width: 86px;
+    height: 86px;
+    object-fit: contain;
+    /* Белый фон картинок растворяется в пергаменте карточки */
+    mix-blend-mode: multiply;
 }
 
 .roulette_point {
@@ -52,75 +238,212 @@ body {
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 3px;
+    width: 4px;
     transform: translateX(-50%);
-    background: gold;
     z-index: 2;
     pointer-events: none;
+    background: linear-gradient(180deg, var(--orange-light), var(--orange));
+    box-shadow: 0 0 14px rgba(255, 170, 60, 0.95);
 }
 
-.Header_roulette button {
-    margin: 10px 6px 0;
-    padding: 10px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background: darkred;
-    border: 2px solid gold;
-    border-radius: 6px;
-    cursor: pointer;
+.roulette_point::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 16px solid var(--orange);
+    filter: drop-shadow(0 0 6px rgba(255, 138, 31, 0.8));
 }
 
-.Header_roulette button:hover:not(:disabled) {
-    background: #a30000;
+.btn-reset {
+    margin-top: 14px;
 }
 
-.Header_roulette button:disabled {
-    opacity: 0.5;
+/* ===== ТЫКВА ===== */
+.pumpkin_area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Case {
+    position: relative;
+    display: block;
+    width: clamp(210px, 46vw, 270px);
+    aspect-ratio: 4 / 3;
+    padding: 0;
+    border: 3px solid var(--orange-light);
+    border-radius: 28px;
+    overflow: hidden;
     cursor: default;
+    background: radial-gradient(circle at 50% 38%, #fff5d9 0%, #f4d9a8 68%, #d99a52 100%);
+    box-shadow: 0 0 46px rgba(255, 138, 31, 0.38), 0 18px 32px rgba(0, 0, 0, 0.55);
 }
 
-.Drop {
-    padding: 20px;
-    border: 3px solid darkred;
+.Case img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+}
+
+.Case.drop-in {
+    animation: dropIn 1.7s cubic-bezier(0.22, 0.8, 0.3, 1) both;
+}
+
+.Case.shake {
+    cursor: pointer;
+    transform-origin: 50% 88%;
+    animation: pumpkinShake 1.5s ease-in-out infinite;
+}
+
+.Case.busy {
+    cursor: wait;
+    animation: pumpkinPulse 0.6s ease-in-out infinite alternate;
+}
+
+.hint {
+    margin: 14px 0 0;
+    color: #cdb8e2;
+    font-size: 0.95rem;
+    transition: color 0.25s ease;
+}
+
+.hint.active {
+    color: var(--orange-light);
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+    margin: 0;
+    padding: 11px 24px;
+    border: 2px solid var(--orange-light);
     border-radius: 10px;
-    background: #fff;
+    font: inherit;
+    font-weight: bold;
+    color: #2a0f04;
+    background: linear-gradient(180deg, var(--orange-light), var(--orange-dark));
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.55;
+    cursor: default;
+    transform: none;
+}
+
+.btn-primary {
+    background: linear-gradient(180deg, #b3e35c, #4d8617);
+    border-color: #cdf38a;
+}
+
+/* ===== ОКНО РЕЗУЛЬТАТА ===== */
+.Drop {
+    width: min(420px, 92vw);
+    padding: 26px;
+    border: 2px solid var(--orange);
+    border-radius: 18px;
+    color: var(--cream);
+    background: linear-gradient(160deg, #2b1039, #14081f);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(255, 138, 31, 0.12);
     text-align: center;
 }
 
 .Drop::backdrop {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(4, 2, 8, 0.78);
+    backdrop-filter: blur(4px);
 }
 
-.Drop img {
-    width: 150px;
+.Drop_Item img {
     display: block;
-    margin: 0 auto 10px;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 16px;
+    padding: 8px;
+    border-radius: 20px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    background: radial-gradient(circle at 50% 40%, #fff5d9, #e6c99a);
+    box-shadow: 0 0 28px rgba(255, 138, 31, 0.3);
 }
 
 .Drop_Item p {
     margin: 0;
+    font-size: 1.25rem;
     font-weight: bold;
+    color: var(--orange);
+    text-shadow: 0 0 14px rgba(255, 138, 31, 0.4);
 }
 
 .Drop_Actions {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 22px;
 }
 
-.Drop_Actions button {
-    padding: 8px 18px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    background: darkred;
-    border: 2px solid gold;
-    border-radius: 6px;
-    cursor: pointer;
+/* ===== АНИМАЦИИ ===== */
+@keyframes dropIn {
+    0%   { transform: translateY(-120vh) rotate(-18deg) scale(0.82); opacity: 0; }
+    58%  { transform: translateY(0) rotate(5deg) scale(1); opacity: 1; }
+    70%  { transform: translateY(-28px) rotate(-4deg); }
+    82%  { transform: translateY(0) rotate(3deg); }
+    92%  { transform: translateY(-9px) rotate(-2deg); }
+    100% { transform: translateY(0) rotate(0); }
 }
 
-.Drop_Actions button:hover {
-    background: #a30000;
+@keyframes pumpkinShake {
+    0%, 100% { transform: rotate(0); }
+    25%      { transform: rotate(-3deg); }
+    75%      { transform: rotate(3deg); }
+}
+
+@keyframes pumpkinPulse {
+    from { box-shadow: 0 0 28px rgba(255, 138, 31, 0.35), 0 18px 32px rgba(0, 0, 0, 0.55); }
+    to   { box-shadow: 0 0 60px rgba(255, 138, 31, 0.8), 0 18px 32px rgba(0, 0, 0, 0.55); }
+}
+
+@keyframes rouletteAppear {
+    0%   { opacity: 0; transform: translateY(-34px) scale(0.9); }
+    70%  { opacity: 1; transform: translateY(6px) scale(1.02); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes batFly {
+    from { transform: translate(-24px, 8px) rotate(-6deg); }
+    to   { transform: translate(28px, -10px) rotate(6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .Case.drop-in,
+    .Case.shake,
+    .Case.busy,
+    .bat {
+        animation: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .stage { padding: 28px 14px 80px; }
+    .roulette_window { height: 118px; }
+    .roulette_item img { width: 76px; height: 76px; }
+    .Drop { padding: 20px; }
+    .Drop_Item img { width: 140px; height: 140px; }
 }

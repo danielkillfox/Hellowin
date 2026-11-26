@@ -2,27 +2,51 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Рулетка</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хэллоуинская рулетка</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="Header_roulette" id="rouletteSection">
-        <div class="roulette_window" id="Peso">
-            <div id="roulette_bar" class="roulette_bar"></div>
-            <div class="roulette_point"></div>
-        </div>
+    <!-- Фон и декорация сделаны только CSS, без векторной графики -->
+    <div class="night" aria-hidden="true">
+        <div class="moon"></div>
+        <div class="stars"></div>
+        <div class="bat bat-one"></div>
+        <div class="bat bat-two"></div>
+        <div class="fog"></div>
+        <div class="ground"></div>
+    </div>
 
-        <button id="Spin_Button" type="button">Make a Wish</button>
-        <button id="Cancel_Button" type="button">Cancel</button>
+    <main class="stage">
+        <h1 class="title">Хэллоуинская рулетка</h1>
+        <p class="subtitle">Нажми на тыкву — и посмотри, что ждёт тебя в эту ночь</p>
 
-        <dialog id="drop_dialog" class="Drop">
-            <div class="Drop_Item" id="result"></div>
-            <div class="Drop_Actions">
-                <button id="Close_Result" type="button">Закрыть</button>
-                <button id="Spin_Again" type="button">Крутить снова</button>
+        <!-- Рулетка появляется после клика по тыкве -->
+        <section class="Header_roulette" id="rouletteSection" aria-hidden="true">
+            <div class="roulette_frame">
+                <div class="roulette_window" id="Peso">
+                    <div id="roulette_bar" class="roulette_bar"></div>
+                    <div class="roulette_point" aria-hidden="true"></div>
+                </div>
             </div>
-        </dialog>
+            <button class="btn btn-reset" id="Cancel_Button" type="button">Сбросить</button>
+        </section>
+
+        <div class="pumpkin_area">
+            <button class="Case" id="Case_Js" type="button" aria-label="Нажать на тыкву и крутить рулетку">
+                <img src="halloween-pumpkin-isolated-on-transparent-background-png-psd_888962-1488-840552587.jpg" alt="Тыква">
+            </button>
+            <p class="hint" id="hint">Нажми на тыкву, чтобы крутить</p>
+        </div>
     </main>
+
+    <dialog id="drop_dialog" class="Drop">
+        <div class="Drop_Item" id="result"></div>
+        <div class="Drop_Actions">
+            <button id="Close_Result" class="btn" type="button">Закрыть</button>
+            <button id="Spin_Again" class="btn btn-primary" type="button">Крутить снова</button>
+        </div>
+    </dialog>
 
     <script src="scrypt.js" defer></script>
 </body>
